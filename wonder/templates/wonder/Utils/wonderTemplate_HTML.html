@@ -1,0 +1,304 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    {% block linkCSS %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'wonder/CSS/wonder_CSS.css' %}"/>
+    <link rel="shortcut icon" href="{% static 'wonder/imagenes/faviconAux.ico' %}"/>
+
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css /">
+    <link href="https://fonts.googleapis.com/css?family=Supermercado+One&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- BOOSTRAP-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+    <!-- Full Calendar-->
+    <link rel="stylesheet" href="{% static 'wonder/fullcalendar/lib/main.css' %}">
+    <script src="{% static 'wonder/fullcalendar/lib/main.js' %}"></script>
+    <script src="{% static 'wonder/fullcalendar/lib/locales-all.js' %}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- Font Awosome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!-- Htmx-->
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+
+</head>
+<body class="templateBody">
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<!-- INICIO - HEADER Nº1 -->
+<div class="header" id="divHeaderID" hx-boost="false">
+    <div class="imagen_div">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'wonder/imagenes/logoWonder.png' %}" alt="logo Wonder" id="imagen_Header">
+        </a>
+    </div>
+    <div class="headerSeparator"></div>
+    <div id="login">
+        <!-- INICIO Boton de Login -->
+        {% if user.username %}
+            <a href="{% url 'logout' %}"><button style="width:auto;" id="logout_B">Sing Out
+            </button></a>
+        {% else %}
+            <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" id="login_B">
+                Login
+            </button>
+            <a href="{% url 'registro' %}"><button style="width:auto;" id="register_B">Register</button></a>
+            <div id="id01" class="modal">
+                <form class="modal-content animate" action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="imgcontainer">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                          title="Close Modal">&times;</span>
+                    </div>
+                    <div class="container">
+                        <div id="wr_log">
+                            <div id="user">
+                                <label for="id_username"><b id="texto_log1">Usuari</b></label>
+                                <input type="text" placeholder="Username" name="username" required id="id_username">
+                            </div>
+                            <div id="mid_log"></div>
+                            <div id="pass">
+                                <label for="id_password"><b id="texto_log2">Contrasenya</b></label>
+                                <input type="password" placeholder="Enter Password" name="password" required
+                                       id="id_password">
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" id="login_B2">LOGIN</button>
+                        <label>
+                            <input type="checkbox" checked="checked" name="remember"> Recordam?
+                        </label>
+                        <br><br>
+                        <span class="registerText" hx-boost="false">
+                            No estas registrat? <br>
+                            Fes-ho <a href="{% url 'registro' %}">aquí</a>
+                    </span>
+                    </div>
+                    <div class="container" style="background-color:#f1f1f1">
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                                class="cancelbtn">CANCELAR
+                        </button>
+                        <span class="psw">Has olvidat la <a href="#">contrasenya?</a></span>
+                    </div>
+                </form>
+            </div>
+
+            <script>
+                var modal = document.getElementById('id01');
+                window.onclick = function (event) {
+                    if (event.target === modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            </script>
+            <!-- FINAL Boton de Login -->
+        {% endif %}
+    </div>
+</div>
+<!-- FINAL - HEADER Nº1 -->
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<!-- INICIO - HEADER Nº2 -->
+<div id="div_headerT">
+    <div class="margenes_head1"></div>
+
+
+    <!-- INICIO - HOME -->
+    <div id="inicio">
+        <a href="{% url 'home' %}" class="listado_header">INICI</a>
+    </div>
+    <!-- FINAL - HOME -->
+
+
+    <div class="margenes_head2"></div>
+
+
+    <!-- INICIO - NECESITAS AYUDA -->
+    <div id="necesitasAyuda" class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn listado_header">NECESSITES AJUDA?</a>
+        <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
+    </div>
+    <!-- FINAL - NECESITAS AYUDA -->
+
+
+    <div class="margenes_head2"></div>
+
+
+    <!-- INICIO - PROYECTOS -->
+    <div id="proyectos">
+        <a href="{% url 'proyectos' %}" class="listado_header">PROJECTES</a>
+    </div>
+    <!-- FINAL - PROYECTOS -->
+
+
+    <div class="margenes_head2"></div>
+
+
+    <!-- INICIO - ENTORNO VIRTUAL -->
+    <div id="entornoVirtual">
+        <a href="{% url 'entornoVirtual' %}" class="listado_header">ENTORN VIRTUAL</a>
+    </div>
+    <!-- FINAL - ENTORNO VIRTUAL -->
+
+
+    <div class="margenes_head2"></div>
+
+
+    <!-- INICIO - CONTACTANOS -->
+    <div id="contactanos">
+        <a href="{% url 'contactanos' %}" class="listado_header">CONTACTE</a>
+    </div>
+    <!-- FINAL - CONTACTANOS -->
+
+
+    <div class="margenes_head1"></div>
+</div>
+<!-- FINAL - HEADER Nº2 -->
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<!-- INICIO - CONTENIDO -->
+<div class="flexPagina">
+    <div class="margenLateral"></div>
+    <div class="centroPagina">
+        {% block contenido %}{% endblock %}
+    </div>
+    <div class="margenLateral"></div>
+</div>
+<!-- FINAL - CONTENIDO -->
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<!-- INICIO - BANNER AD -->
+<br><br>
+<div class="BannerAD">
+    <span>Full Banner AD</span>
+</div>
+<!-- FINAL - BANNER AD -->
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<!-- INICIO - FOOTER 1 -->
+<div class="footer1" hx-boost="true">
+    <div class="footer1_margin"></div>
+
+
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+    <div class="mapaGoogle">
+        <h1 class="titleFooter">Contacta amb Nosaltres</h1>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.8857678682184!2d2.2010485154261477!3d41.39828707926322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a315252f0f33%3A0x7c28ad8c59d3778e!2sInstitut%20Poblenou%20ECAIB!5e0!3m2!1sca!2ses!4v1639670153661!5m2!1sca!2ses"
+                style="border:0;" allowfullscreen=""></iframe>
+        <br>
+        <div class="dividedFooter">
+            <div class="phone">
+                <img src="{% static 'wonder/imagenes/phone.png' %}" alt="Alaverga" class="imgPhone">
+            </div>
+            <div class="textPhone">
+                932 25 38 12 <br>
+                Dilluns - Divendres <br>
+                09:00 - 21:00 <br>
+                SEGUEIX-NOS
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+    <div class="sendEmail">
+        <h1 class="titleFooter">Envia'ns un Correu</h1>
+        <form action="">
+            <input type="text" placeholder="El teu nom..."> <br> <br>
+            <input type="text" placeholder="El teu correu..."> <br> <br>
+            <textarea name="" id="" cols="30" rows="10" placeholder="El teu missatge aquí..."></textarea> <br><br>
+            <button type="submit" class="btnEmail">Enviar</button>
+        </form>
+    </div>
+
+
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+    <div class="footer1_margin"></div>
+</div>
+<!-- FINAL - FOOTER 1 -->
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<!-- INICIO - FOOTER 2 -->
+<div class="footer2" hx-boost="true">
+    <div class="marginFoot2"></div>
+
+
+    <div class="flex-ft2-1">
+        <a href="">Avís Legal</a>
+    </div>
+
+    <div class="flex-ft2-2">
+        <a href="">Política de privacitat</a>
+    </div>
+
+    <div class="flex-ft2-2">
+        <a href="">Política de cookies</a>
+    </div>
+
+    <div class="flex-ft2-1">
+        <a href="">Contacte</a>
+    </div>
+
+    <div class="flex-ft2-1">
+        <a href="">Sitemap</a>
+    </div>
+
+    <div class="marginFoot2"></div>
+</div>
+<div class="endText">
+    <span>CIF X-XXXXXX-X Registre de Fundacions de competència estatal amb núm. de registre XXX</span>
+</div>
+<!-- FINAL - FOOTER 2 -->
+
+
+</body>
+</html>

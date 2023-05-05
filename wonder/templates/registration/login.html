@@ -1,0 +1,62 @@
+{% extends 'wonder/Utils/wonderTemplate_HTML.html' %}
+
+{% load static %}
+
+{% block title %} Inicio - Wonder {% endblock %}
+
+{% block linkCSS %}
+    <link rel="stylesheet" type="text/css" href="{% static 'wonder/CSS/contactanos_CSS.css' %}">{% endblock %}
+
+{% block contenido %}
+
+    <div id="id02" class="modal">
+        <form class="modal-content animate" action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <div class="imgcontainer">
+                    <span onclick="history.back()" class="close"
+                          title="Close Modal" id="span_close_id" >&times;</span>
+            </div>
+            <div class="container">
+                <div id="wr_log">
+                    <div id="user">
+                        <label for="id_username"><b id="texto_log1">Usuari</b></label>
+                        <input type="text" placeholder="Username" name="username" required id="id_username">
+                    </div>
+                    <div id="mid_log"></div>
+                    <div id="pass">
+                        <label for="id_password"><b id="texto_log2">Contrasenya</b></label>
+                        <input type="password" placeholder="Enter Password" name="password" required
+                               id="id_password">
+                    </div>
+                </div>
+                <br>
+                <button type="submit" id="login_B2">LOGIN</button>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Recordam?
+                </label>
+                <br><br>
+                <span class="registerText" hx-boost="false">
+                            No estas registrat? <br>
+                            Fes-ho <a href="{% url 'registro' %}">aquí</a>
+                    </span>
+            </div>
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="history.back()"
+                        class="cancelbtn" id="cancel_button_id">CANCELAR
+                </button>
+                <span class="psw">Has olvidat la <a href="#">contrasenya?</a></span>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        var modal2 = document.getElementById('id02');
+        var span_close = document.getElementById('span_close_id')
+        var cancel_button = document.getElementById('cancel_button_id')
+
+        modal2.style.display = "block"
+
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+
+/* INICIO - SLIDER */
+.carousel-inner{
+    width: 100%;
+    height: 25em;
+}
+/* FIN - SLIDER */
+
+
+
+/*GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG*/
+
+
+
+/* INICIO - TEXTOS CENTRADOS */
+
+    /* INICIO - FLEXES */
+    div.contenedorTextosCentrados{
+        padding-top: 4em;
+        display: flex;
+    }
+    div.contenedorTexto1{
+        flex: 5;
+    }
+    div.contenedorTexto1{
+        flex: 5;
+    }
+    div.contenedorTexto1{
+        flex: 5;
+    }
+    div.marginTextoCentrado{
+        flex: 1;
+    }
+    /* FINAL - FLEXES */
+
+    /* INICIO - CONTENIDO */
+    p.textoCentrado{
+        text-align: center;
+    }
+    /* FINAL - CONTENIDO */
+
+/* INICIO - TEXTOS CENTRADOS */
+
+
+
+/*GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG*/
+
+
+

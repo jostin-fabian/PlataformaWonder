@@ -1,0 +1,89 @@
+
+/* INICIO - IMAGEN TOP */
+img.imgTop{
+    width: 100%;
+    height: 16em;
+    margin-bottom: 6em;
+}
+/* FINAL - IMAGEN TOP */
+
+
+
+/*GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG*/
+
+
+
+/* INICIO - CARDS */
+    /* INICIO - MARGENER */
+    div.containCards{
+        display: flex;
+    }
+    div.cardJuvenil, div.cardAdult{
+        flex: 10;
+        border-style: solid;
+        border-width: 1px;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+    }
+    div.marginCards{
+        flex: 1;
+    }
+    /* FINAL - MARGENER */
+
+    /* INICIO - TITULO CARD */
+    div.titleCard {
+        border-style: solid;
+        border-width: 1px;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        width: 100%;
+        height: 10em;
+        background-color: rgb(26, 115, 232);
+        display: flex;
+    }
+    div.titleCard span {
+        flex: 8;
+        color: white;
+        font-weight: bold;
+        font-size: 1.8em;
+        padding-top: 2em;
+        padding-left: 1em;
+    }
+    div.titleCard img {
+        flex: 3;
+        height: available;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-right: 3em;
+    }
+    /* FINAL - TITULO CARD */
+
+    /* INICIO - FORM CARD */
+    div.formCard{
+        padding: 1em 1em;
+    }
+    div.formCard span{
+        font-size: 1.4em;
+        margin-bottom: 1em;
+    }
+    div.formCard form {
+        margin-top: 1em;
+    }
+    div.formCard form input{
+        width: 100%;
+        margin-bottom: 0.5em;
+    }
+    div.formCard button{
+        margin: 1em 35%;
+        background-color: rgb(26, 115, 232);
+        color: white;
+        padding: 0.8em 2em;
+        border: none;
+        cursor: pointer;
+        width: 12em;
+    }
+    div.formCard button button:hover {
+        opacity: 0.8;
+    }
+    /* FINAL - FORM CARD */
+/* FINAL - CARDS */

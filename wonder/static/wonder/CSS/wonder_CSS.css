@@ -1,0 +1,559 @@
+
+/*
+OPTION UNO
+
+
+*/
+
+/* INICIO - COLORES PAGINA */
+button#login_B2,
+button#login_B,
+button#logout_B,
+button#register_B,
+div#id01 .cancelbtn,
+div#id02 .cancelbtn
+button.btnEmail {
+    background-color: rgb(26, 115, 232);
+
+}
+div#div_headerT a:hover {
+    color: rgb(26, 115, 232);
+}
+div#div_headerT {
+    background-color: darkgrey;
+}
+body.templateBody{
+    background-color: white;
+}
+div.footer1{
+    background-color: #e4e2e1;
+}
+div.BannerAD{
+    background-color: darkgrey;
+}
+div.BannerAD span,
+div#id01 .close,
+div#id02 .close{
+    color: black;
+}
+div#id01 .close:hover,
+div#id01 .close:focus,
+div#id02 .close:hover,
+div#id02 .close:focus {
+    color: red;
+    cursor: pointer;
+}
+div#id01 .modal,
+div#id02 .modal {
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+    }
+div#id01 .modal-content,
+div#id02 .modal-content {
+     background-color: #fefefe;
+     border: 1px solid #888;
+ }
+.listado_header {
+    color: black;
+}
+button#login_B,
+button#logout_B,
+button#register_B {
+    color: white;
+}
+/* FINAL - COLORES PAGINA */
+
+
+
+/*GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG*/
+
+
+
+/* INICIO - HEADER Nº1 */
+img#imagen_Header {
+    width: 14em;
+    height: 7em;
+}
+div.imagen_div a {
+    margin-left: 50%;
+    margin-bottom: 0.5em;
+    margin-top: 0.3em;
+}
+a.listado_header{
+    text-decoration: none;
+    font-family: Fantasy, serif;
+    font-size: 1em;
+    list-style: none;
+    font-weight: bold;
+}
+div#div_headerT a:hover {
+    text-decoration:none;
+}
+@media (max-width: 1200px) {
+    #div_headerT{
+        flex-direction: column;
+        margin-left: 3em;
+        margin-right: 2.5em;
+    }
+    #entornoVirtual{
+        margin-top: 2em;
+    }
+    #contactanos{
+        margin-top: 2em;
+    }
+}
+
+div.header {
+    display: flex;
+    background-color: #e4e2e1;
+}
+div.headerSeparator {
+    flex: 8;
+}
+div.imagen_div {
+    flex: 2;
+}
+div.login{
+    flex: 1;
+}
+
+/* FINAL - HEADER Nº1 */
+
+
+
+/*GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG*/
+
+
+
+/* INICIO - HEADER Nº2 */
+div#div_headerT{
+    display: flex;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 1em 0;
+}
+div#inicio{
+    flex: 4;
+}
+div#necesitasAyuda{
+    flex: 7;
+}
+div#proyectos{
+    flex: 4;
+}
+div#entornoVirtual{
+    flex: 7;
+}
+div#contactanos{
+    flex: 4;
+}
+div.margenes_head1{
+    flex: 3;
+}
+div.margenes_head2{
+    flex: 1;
+}
+
+
+
+.dropbtn {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+.dropdown {
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+/* FINAL - HEADER Nº2 */
+
+
+
+/*GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG*/
+
+
+
+/* INICIO - BOTON PARA LOGIN */
+    /* INICIO - DISEÑO INPUTS DE TEXTO DENTRO DEL LOGIN */
+    div#id01 input[type=text], div#id01 input[type=password],
+    div#id02 input[type=text], div#id02 input[type=password]{
+        width: 100%;
+        height: 3em;
+        margin: 8px 0;
+        display: inline-block;
+        border: 2px solid #ccc;
+        box-sizing: border-box;
+        padding-left: 18px;
+    }
+    div#wr_log{
+        display: flex;
+    }
+    div#user{
+        flex: 10;
+    }
+    div#mid_log{
+        flex: 1;
+    }
+    div#pass{
+        flex: 10;
+    }
+    @media (max-width: 300px) {
+        #wr_log{
+            flex-direction: column;
+        }
+    }
+    button#login_B2 {
+        color: white;
+        padding: 10px;
+        margin-top: 1em;
+        border: none;
+        cursor: pointer;
+        width: 30%;
+    }
+    button#login_B2 button:hover {
+        opacity: 0.8;
+    }
+    b#texto_log{
+        font-size: 2em;
+    }
+    input#input_log{
+
+    }
+    /* FINAL - DISEÑO INPUTS DE TEXTO DENTRO DEL LOGIN */
+
+    /* INICIO - BOTON DE LOGIN */
+    button#login_B,
+    button#logout_B,
+    button#register_B {
+        padding: 0.8em 2em;
+        margin-top: 1.6em;
+        margin-right: 10em;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+    button#login_B{
+        margin-right: 1em;
+    }
+    button#login_B button:hover,
+    button#logout_B button:hover,
+    button#register_B button:hover {
+        opacity: 0.8;
+    }
+    /* FINAL - BOTON DE LOGIN */
+
+    /* INICIO - BOTON DE CANCELAR */
+    div#id01 .cancelbtn,
+    div#id02 .cancelbtn{
+        color: white;
+        width: auto;
+        padding: 10px 18px;
+        margin-bottom: 1em;
+    }
+    /* FINAL - BOTON DE CANCELAR */
+
+    /* INICIO - SEPARACION DE CONTENIDO */
+    div#id01 .container,
+    div#id02 .container{
+        padding: 8px;
+        width: 100%;
+        margin-right: 1em;
+    }
+    div#id01 span.psw,
+    div#id02 span.psw {
+        float: right;
+        padding-top: 16px;
+    }
+
+    /* FINAL - SEPARACION DE CONTENIDO */
+
+    /* INICIO - MODAL QUE CONTIENE EL CONTENIDO DEL LOGIN */
+    div#id01 .modal,
+    div#id02 .modal{
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        padding-top: 60px;
+    }
+    div#id01 .modal-content,
+    div#id02 .modal-content{
+        padding-left: 2em;
+        padding-right: 2em;
+        padding-bottom: 4em;
+        margin: 2% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+        width: 70%; /* Could be more or less, depending on screen size */
+    }
+    /* FINAL - MODAL QUE CONTIENE EL CONTENIDO DEL LOGIN */
+
+    /* INICIO - BOTON DE CIERRE "X" DEL MODAL */
+    div#id01 .close,
+    div#id02 .close{
+        position: absolute;
+        right: 25px;
+        top: 0;
+        font-size: 35px;
+        font-weight: bold;
+    }
+    div#id01 .close:hover,
+    div#id01 .close:focus,
+    div#id02 .close:hover,
+    div#id02 .close:focus{
+        cursor: pointer;
+    }
+    /* FINAL - BOTON DE CIERRE "X" DEL MODAL */
+
+    /* INICIO - ANIMACIONES DEL ZOOM DEL MODAL */
+    div#id01 .animate,
+    div#id02 .animate{
+        -webkit-animation: animatezoom 0.6s;
+        animation: animatezoom 0.6s
+    }
+    @-webkit-keyframes animatezoom {
+        from {-webkit-transform: scale(0)}
+        to {-webkit-transform: scale(1)}
+    }
+    @keyframes animatezoom {
+        from {transform: scale(0)}
+        to {transform: scale(1)}
+    }
+    /* FINAL - ANIMACIONES DEL ZOOM DEL MODAL */
+
+    /* INICIO - CAMBIO DE TAMAÑOS DE BOTONES Y EL MODAL */
+    @media screen and (max-width: 300px) {
+        span.psw {
+            display: block;
+            float: none;
+        }
+        .cancelbtn {
+            width: 100%;
+        }
+    }
+    /* FINAL - CAMBIO DE TAMAÑOS DE BOTONES Y EL MODAL */
+/* FINAL - BOTON PARA LOGIN */
+
+
+
+/*GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG*/
+
+
+
+/* INICIO - - TITULOS GENERALES */
+h1.tituloGeneral{
+    font-size: 4em;
+    text-align: center;
+}
+
+h2.subtituloGeneral{
+    font-size: 2.5em;
+    text-align: center;
+}
+/* FINAL - - TITULOS GENERALES */
+
+
+
+/*GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG*/
+
+
+
+/* INICIO - FOOTER */
+    /* INICIO - BANNER AD */
+    div.BannerAD{
+        width: 86%;
+        margin: 0 7%;
+        height: 8em;
+        display: flex;
+        margin-bottom: 2em;
+    }
+    div.BannerAD span{
+        font-size: 1.4em;
+        padding-top: 2em;
+        padding-left: 45%;
+    }
+    /* FINAL - BANNER AD */
+
+
+
+    /* INICIO - FOOTER 1 */
+    div.footer1{
+        width: 100%;
+        display: flex;
+    }
+    div.footer1_margin{
+        flex: 1;
+    }
+    div.mapaGoogle,
+    div.sendEmail{
+        margin: 2em 0;
+        flex: 7;
+        padding-top: 2em;
+    }
+    div.sendEmail{
+        padding-left: 2em;
+        border-left: 1px solid grey;
+    }
+    div.dividedFooter{
+        display: flex;
+        margin-top: 0.3em;
+    }
+    div.textPhone{
+        padding-left: 1em;
+        padding-top: 0.5em;
+        font-weight: bold;
+    }
+    img.imgPhone{
+        width: 2.5em;
+    }
+    div.sendEmail form input,
+    div.sendEmail form textarea {
+        width: 100%;
+    }
+
+    button.btnEmail {
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    /* FINAL - FOOTER 1 */
+
+    /* INICIO - FOOTER 2 */
+    div.footer2 {
+        padding: 0.7em 0;
+        width: 100%;
+        display: flex;
+    }
+
+    div.marginFoot2{
+        flex: 5;
+    }
+    div.flex-ft2-1{
+        flex: 2;
+    }
+    div.flex-ft2-2{
+        flex: 3;
+    }
+    div.endText span{
+        margin-left: 30%;
+        padding-bottom: 1em;
+    }
+    /* FINAL - FOOTER 2 */
+/* FINAL - FOOTER */
+
+
+
+/*GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG*/
+
+
+
+/* INICIO - MARGENES DE LA PAGINA */
+div.flexPagina{
+    display: flex;
+}
+div.margenLateral{
+    flex: 1;
+}
+div.centroPagina{
+    flex: 12;
+}
+/* INICIO - MARGENES DE LA PAGINA */
+
+
+/*GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG*/
+
+
+/* INICIO - MEDIA CORRECCION DE TAMAÑOS */
+@media  screen and (max-width: 1000px){
+
+    /* INICIO - HEADER */
+    .header {
+        flex-direction: column;
+    }
+    #login{
+        margin-left: 2.5em;
+        margin-bottom: 1em;
+    }
+
+    img#imagen_Header {
+        margin-left: 2.5em;
+    }
+    div.margenes_head1{
+        flex: 0;
+    }
+    div.margenes_head2{
+        flex: 0;
+    }
+    /* FINAL - HEADER */
+
+    /* INICIO - MARGENES PAGINA */
+    .flexPagina{
+        flex-direction: column;
+    }
+    .tituloGeneral{
+        font-size: 1em;
+    }
+    .subtituloGeneral{
+        font-size: 0.5em;
+    }
+    /* FINAL - MARGENES PAGINA */
+
+    /* INICIO - FOOTER */
+    .footer2 {
+            flex-direction: column;
+        }
+    .BannerAD {
+            flex-direction: column;
+        }
+    /* FINAL - FOOTER */
+
+}
+/* FINAL - MEDIA CORRECCION DE TAMAÑOS */
+
+
+
+/*GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG*/
+
+
+
+
+
+/* INICIO - MAPA GOOGLE*/
+iframe {
+    height: 20em;
+    /* The height is 400 pixels */
+    width: 80%;
+    /* The width is the width of the web page */
+}
+/* INICIO - MAPA GOOGLE*/
+
+
+

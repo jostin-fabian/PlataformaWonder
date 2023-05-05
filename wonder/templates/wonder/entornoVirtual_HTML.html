@@ -1,0 +1,445 @@
+{% extends 'wonder/Utils/wonderTemplate_HTML.html' %}
+
+{% load static %}
+
+{% block title %} Inicio - Wonder {% endblock %}
+
+{% block linkCSS %}
+    <link rel="stylesheet" type="text/css" href="{% static 'wonder/CSS/entornoVirtual_CSS.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
+
+{% endblock %}
+
+
+{% block contenido %}
+
+
+
+    <!-- INICIO - CONTENIDO CALENDARIO / CHAT -->
+    <div class="chat-calendar">
+        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+        <!-- INICIO - CALENDARIO + CHAT SELECTOR-->
+        <div class="chatSelect-calendar">
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+            <!-- INICIO - CHAT SELECTOR-->
+            <div class="chat-selector">
+                <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+                <!-- INICIO - USER SELECTED TOP ROW -->
+                <div class="row chat-top">
+                    <div class="row-chat">
+                        <img src="{% static 'wonder/assets/dp.png' %}" alt="" class="profile-image rounded-circle">
+                        <span class="user-name">{{ request.user.username }}</span>
+                        <span class="float-right">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-circle" fill="currentColor"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            </svg>
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-left-fill mx-3"
+                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            </svg>
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical mr-2"
+                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                            </svg>
+                        </span>
+
+
+                    </div>
+                </div>
+                <!-- FINAL - USER SELECTED TOP ROW -->
+
+
+                <!-- INICIO - ROW + SCROLL SELECT USER -->
+                <div class="row">
+                    <div class="contacts">
+                        <div class="contact-table-scroll">
+                            <table class="table table-hover">
+                                <tbody>
+                                {% for user in users %}
+                                    <tr>
+                                        <td class="img-td"><img src="{% static 'wonder/assets/dp.png' %}" alt=""
+                                                 class="profile-image rounded-circle">
+                                        </td>
+                                        <td><a href="" class="user-select">{{ user.username }}</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                                <!-- end -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- FINAL - ROW + SCROLL SELECT USER -->
+
+                <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+            </div>
+            <!-- FINAL - CHAT SELECTOR-->
+
+
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+            <!-- INICIO - CALENDARIO -->
+            <div class="full-calendar">
+                <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+                <div id="calendar"></div>
+                <script>
+
+                    function get_flatpickr() {
+                        flatpickr('#id_start', {
+                            enableTime: true,
+                            'locale': 'es'
+                        });
+                        flatpickr('#id_end', {
+                            enableTime: true,
+                            'locale': 'es'
+                        });
+                    }
+
+
+                    function iniciarCalendario() {
+                        var eventObject;
+                        const element = document.getElementById("calendar");
+                        var todayDate = moment().startOf("day");
+                        var YM = todayDate.format("YYYY-MM");
+                        var YESTERDAY = todayDate.clone().subtract(1, "day").format("YYYY-MM-DD");
+                        var TODAY = todayDate.format("YYYY-MM-DD");
+                        var TOMORROW = todayDate.clone().add(1, "day").format("YYYY-MM-DD");
+                        var calendarEl = element;
+                        var calendar = new FullCalendar.Calendar(calendarEl, {
+                            headerToolbar: {
+                                left: "prev,next today",
+                                center: "title",
+                                right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
+                            },
+                            timeZone: 'UTC',
+                            hiddenDays: [0, 6], //Oculta el el Sabado y el Domingo del calendario
+                            //themeSystem: 'bootstrap',
+                            aspectRatio: 2,  // Mirar :https://fullcalendar.io/docs/aspectRatio
+                            nowIndicator: true,
+                            now: TODAY, // Coge La variable Today que contiene el dia actual
+
+                            views: {
+                                dayGridMonth: {buttonText: "Mes"},
+                                timeGridWeek: {buttonText: "Semana"},
+                                timeGridDay: {buttonText: "Dia"},
+                            },
+
+                            initialView: "dayGridMonth",
+                            initialDate: TODAY,
+                            editable: true,
+                            dayMaxEvents: true, // permitir el enlace "más" cuando hay demasiados eventos
+                            navLinks: true,
+                            events: [
+                                {% for cita in evento %}
+                                    {% if cita.created_by == request.user or cita.user == request.user or request.user.is_superuser  %}
+                                        {
+                                            color: 'yellow',
+                                            textColor: 'red',
+                                            id: '{{ cita.id }}',
+                                            title: '{{ cita.title }}',
+                                            start: '{{cita.start.isoformat}}',
+                                            end: '{{cita.end.isoformat}}',
+                                            description: '{{ cita.description}}',
+                                            editable: true,
+                                        },
+                                    {% endif %}
+                                {% endfor %}
+                            ],
+                            eventClick: function (info) {
+                                eventObject = info.event;
+
+                                id_evento = info.event.id;
+                                /*
+
+                                titulo_evento = info.event.title;
+                                descripcion_evento = info.event.extendedProps.description;
+                                inicio_evento = info.event.start;
+                                final_evento = info.event.end;
+                                usuario = info.event.events;
+
+                            */
+                                $('#modal_id').html(id_evento);
+
+                                $('#modalTitle').html(eventObject.title);
+                                $('#modalBody').html();
+                                $('#event_descripcion').html(eventObject.extendedProps.description);
+                                $('#event_start').html(eventObject.start);
+                                $('#event_end').html(eventObject.end);
+                                $("#successModal").modal("show");
+
+                            },
+                        });
+                        calendar.render();
+                        calendar.setOption('locale', 'es-us');
+
+                    }
+
+                    //  Javascript document ready
+                    document.addEventListener("DOMContentLoaded", function (event) {
+                        get_flatpickr();
+                        iniciarCalendario();
+
+                    });
+                </script>
+
+
+                <!-- INICIO - MODAL CREACIÓN DE EVENTOS -->
+                <button type="button" class="btn btn-primary events-button" data-toggle="modal"
+                        data-target=".bd-example-modal-lg">
+                    Add Event
+                </button>
+
+                <div class="modal fade bd-example-modal-lg" tabindex="1" role="dialog"
+                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <form action="" method="post" class="form-events">
+                                {% csrf_token %}
+                                <div>
+                                    <div class="flex-modal">
+                                    <div class="first-50">
+                                        <label>Títol: </label> <br>
+                                        <span>{{ form.title }}</span>
+                                        <br>
+                                        <label>Descripció</label> <br>
+                                        <span>{{ form.description }}</span>
+                                    </div>
+                                    <div class="second-50">
+                                        <label>Inici:</label> <br>
+                                        <span>{{ form.start }}</span>
+                                        <br>
+                                        <label>Final:</label> <br>
+                                        <span>{{ form.end }}</span>
+                                    </div>
+                                </div>
+                                    <div>
+                                        <label class="user-modal">Usuari</label> <br>
+                                        <span>{{ form.user }}</span>
+                                        <input type="submit" value="Enviar">
+                                    </div>
+                                </div>
+
+
+                                <br>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- FINAL - MODAL CREACIÓN DE EVENTOS -->
+
+
+                <!-- INICIO - EVENT CLICK MODAL DETAIL -->
+                <div id="successModal" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 id="modalTitle" class="modal-title"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <div class="flex-modal">
+                                        <div class="first-50">
+                                            <label>Descripció</label>
+                                            <br>
+                                            <span id="event_descripcion"></span>
+                                        </div>
+                                        <div class="second-50">
+                                            <label>Inici:</label>
+                                            <br>
+                                            <span id="event_start"></span>
+                                            <br>
+                                            <label>Final:</label> <br>
+                                            <span id="event_end"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                {% for cita in evento %}
+                                    {% if  cita.id == 43 %}
+
+                                        <a href="{% url 'update_reserva' cita.id %}">
+                                            <button type="button" class="btn btn-primary"><i class="fas fa-edit"></i>Editar
+                                            </button>
+                                        </a>
+
+                                        <a href="{% url 'remove_question' cita.id %}">
+                                            <button type="button" class="btn btn-primary"><i
+                                                    class="fas fa-trash-alt"></i>Eliminar
+                                            </button>
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- FINAL - EVENT CLICK MODAL DETAIL -->
+
+                <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+            </div>
+            <!-- INICIO - CALENDARIO -->
+
+
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+        </div>
+        <!-- FINAL - CALENDARIO + CHAT SELECTOR -->
+
+
+        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+        <div class="margin-cal-chat"></div>
+        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+        <!-- INICIO - CHAT -->
+        <div class="chat-aplication">
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+            <div class="message-area">
+
+                <!-- INICIO - USER TOP ROW -->
+                <div class="chat-top">
+                    <div class="row-chat">
+                        <img src="{% static 'wonder/assets/dp.png' %}" alt="" class="profile-image rounded-circle">
+                        <span class="user-name">{{ user.username }}</span>
+                        <span class="float-right">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                        <path fill-rule="evenodd"
+                              d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                    </svg>
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical mx-3"
+                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                    </svg>
+                </span>
+                    </div>
+                </div>
+                <!-- INICIO - USER TOP ROW -->
+
+
+                <!-- INICIO - AREA DEL CHAT -->
+                <div class="message-table-scroll">
+                    <table class="table">
+                        <tbody id='chat-body'>
+                        {% for message in messages %}
+                            {% if message.sender == request.user.username %}
+                                <tr>
+                                    <td>
+                                        <p class="bg-success p-2 mt-2 mr-5 shadow-sm text-white float-right rounded">
+                                            {{ message.message }}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p><small class="p-1 shadow-sm">{{ message.timestamp|time:'H:i' }}</small>
+                                        </p>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td>
+                                        <p class="bg-primary p-2 mt-2 mr-5 shadow-sm text-white float-left rounded">
+                                            {{ message.message }}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p><small class="p-1 shadow-sm">{{ message.timestamp|time:'H:i' }}</small>
+                                        </p>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- FINAL - AREA DEL CHAT -->
+
+                <!-- INICIO - INPUT CHAT + SUBMIT -->
+                <div class="message-box p-3">
+                    <div class="col-sm-2 mt-2">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-emoji-smile"
+                             fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd"
+                                  d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683z"/>
+                            <path
+                                    d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+                        </svg>
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-paperclip mx-2"
+                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
+                        </svg>
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M15 4H1v8h14V4zM1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"/>
+                            <path
+                                    d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                        </svg>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="message_input" placeholder="Write message...">
+
+                    </div>
+                    <div class="col-sm-2 mt-1">
+                        <div class="control">
+                            <button class="btn btn-success" id="chat-message-submit">Submit</button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- FINAL - INPUT CHAT + SUBMIT -->
+
+
+            </div>
+
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+        </div>
+        <!-- FINAL - CHAT -->
+
+
+        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    </div>
+    <!-- FINAL - CONTENIDO CALENDARIO / CHAT -->
+
+
+    {{ user.id|json_script:"json-username" }}
+    {{ request.user.username|json_script:"json-message-username" }}
+    <script src="{% static 'wonder/js/chat.js' %}"></script>
+
+
+
+{% endblock %}

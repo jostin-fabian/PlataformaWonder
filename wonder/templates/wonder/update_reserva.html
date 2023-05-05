@@ -1,0 +1,37 @@
+{% extends 'wonder/Utils/wonderTemplate_HTML.html' %}
+
+{% load static %}
+
+{% block title %} Proyectos - Wonder {% endblock %}
+
+{% block linkCSS %}
+    <link rel="stylesheet" type="text/css" href="{% static 'wonder/CSS/formularios.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
+{% endblock %}
+{% block contenido %}
+
+    <br><br><br>
+    <form action="" method="post">
+        {% csrf_token %}    <!--Se asegura que nadien ha modificado el formulario i que no se haya enviado 2 veces -->
+
+        {{ form }}
+
+        <input type="submit" value="Accept" class="mt-2 btn btn-primary">
+        <a href="{% url 'home' %}" class="mt-2 btn btn-danger">Cancel</a>
+
+    </form>
+    <script>
+        flatpickr('#id_start', {
+            firstDayOfWeek: 1,
+            enableTime: true,
+            'locale': 'es'
+        });
+        flatpickr('#id_end', {
+            firstDayOfWeek: 1,
+            enableTime: true,
+            'locale': 'es'
+        });
+    </script>
+{% endblock %}

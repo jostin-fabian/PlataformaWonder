@@ -1,0 +1,25 @@
+{% extends 'wonder/Utils/wonderTemplate_HTML.html' %}
+
+{% load static %}
+
+{% block title %} Proyectos - Wonder {% endblock %}
+
+{% block linkCSS %}
+    <link rel="stylesheet" type="text/css" href="{% static 'wonder/CSS/formularios.css' %}">{% endblock %}
+
+{% block contenido %}
+
+    <br><br><br>
+    <form action="" method="post">
+        {% csrf_token %}    <!--Se asegura que nadien ha modificado el formulario i que no se haya enviado 2 veces -->
+        <!--Me muestra el form como parrafos -->
+        <legend><h1>{{ events.title }}</h1></legend>
+        <p>Are you sure?</p>
+
+
+        <input type="submit" value="Accept" class="mt-2 btn btn-primary">
+        <a href="{% url 'home' %}" class="mt-2 btn btn-danger">Cancel</a>
+
+    </form>
+
+{% endblock %}
